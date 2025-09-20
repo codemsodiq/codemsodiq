@@ -2,8 +2,11 @@ name: Generate Snake
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # har kuni avtomatik
-  workflow_dispatch:      # qo'lda ham ishlatish mumkin
+    - cron: "0 */12 * * *" # Har 12 soatda ishlaydi
+  workflow_dispatch:       # Qo'lda ishga tushirish uchun
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -12,14 +15,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Generate Snake Animation
+      - name: Generate Snake animation
         uses: Platane/snk@v3
         with:
-          github_user_name: codemsodiq
+          github_user_name: codemsodiq   # <-- sening username'ing
           outputs: dist/snake.svg
 
-      - name: Push Snake Animation
-        uses: crazy-max/ghaction-github-pages@v3
+      - name: Push Snake to output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
           build_dir: dist
