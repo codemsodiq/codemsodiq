@@ -2,27 +2,23 @@ name: Generate Snake
 
 on:
   schedule:
-    - cron: "0 */12 * * *" # Har 12 soatda ishlaydi
-  workflow_dispatch:       # Qo'lda ishga tushirish uchun
-  push:
-    branches:
-      - main
+    - cron: "0 */12 * * *"   # har 12 soatda ishlaydi
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Generate Snake animation
-        uses: Platane/snk@v3
+      - uses: actions/checkout@v3
+      - uses: Platane/snk@v3
         with:
-          github_user_name: codemsodiq   # <-- sening username'ing
-          outputs: dist/snake.svg
-
-      - name: Push Snake to output branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
+          github_user_name: codemsodiq
+          outputs: |
+            dist/snake.svg
+          color_snake: "#00FF00"   # ilon rangi (yashil)
+          color_dots: "#1E90FF,#FF4500,#FFD700,#ADFF2F"  # dotlar ranglari
+          color_bg: "#0D1117"      # fon rangi (github dark theme)
+      - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
           build_dir: dist
