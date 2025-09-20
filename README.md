@@ -36,7 +36,6 @@
 ### 🐍 Snake Animation
 <div align="center">
   <img src="https://raw.githubusercontent.com/codemsodiq/codemsodiq/output/snake.svg" alt="Snake animation" />
-  ![snake gif](https://github.com/codemsodiq/codemsodiq/blob/output/snake.svg)
 </div>
 
 ---
